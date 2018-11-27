@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             x:Class="Dinheirinho.Views.GraficosPage" Padding="20,20,20,20">
+             x:Class="Dinheirinho.Views.GraficosPage" 
+             Padding="20,20,20,20"
+             Title="Gráficos">
     <microcharts:ChartView x:Name="chart" />
 </ContentPage>

@@ -13,7 +13,7 @@ namespace Dinheirinho
             InitializeComponent();
 
             lvMenu.ItemsSource = MenuItemService.ListMenuItems();
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MovimentacoesPage)));
+            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MovimentacoesTabPage)));
         }
 
         private void LvMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
