@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
 
 namespace Dinheirinho.Droid
 {
@@ -16,16 +18,17 @@ namespace Dinheirinho.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             // -> initializers init from external libs
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             //Xamarin.FormsMaps.Init(this, savedInstanceState);
 
             LoadApplication(new App());
         }
 
-        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
-        //{
-        //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        //    PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        //}
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

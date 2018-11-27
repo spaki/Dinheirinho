@@ -46,16 +46,19 @@ namespace Dinheirinho.Services
                 && (descricao == null || e.Descricao.Contains(descricao))
             ).ToListAsync();
 
-        public async Task<decimal?> ObterSaldo() => await App.DinheirinhoDatabase.Connection.ExecuteScalarAsync<decimal?>(
+        public async Task<decimal> ObterSaldo() => await App.DinheirinhoDatabase.Connection.ExecuteScalarAsync<decimal>(
             @"
                 select 
-                    sum (
-                        case [Tipo] when 'Entrada' then
-                            [Valor]
-                        else 
-                            [Valor] * -1
-                        end
-                    )   
+                    ifnull(
+                        sum (
+                            case [Tipo] when 'Entrada' then
+                                [Valor]
+                            else 
+                                [Valor] * -1
+                            end
+                        ),
+                        0
+                    )
                 from [Movimentacao]
                 where [Ativa] = 1
             "

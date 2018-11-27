@@ -8,17 +8,19 @@
         <converter:MovimentacaoColorConverter x:Key="MovimentacaoColorConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            
-            <Label x:Name="lblSaldo" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Button x:Name="btnNova" Text="Nova" Clicked="BtnNova_Clicked" />
+        <StackLayout Spacing="20" Margin="20,20,20,20">
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Saldo:" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" FontSize="Medium" />
+                <Label x:Name="lblSaldo" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Medium" />
+            </StackLayout>
 
             <ListView x:Name="lvMovimentacoes">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             
-                            <StackLayout Orientation="Horizontal" Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="20">
                                 
                                 <StackLayout HorizontalOptions="StartAndExpand">
                                     <Label Text="{Binding Descricao}"/>
@@ -38,6 +40,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <Button x:Name="btnNova" Text="Nova" Clicked="BtnNova_Clicked" HorizontalOptions="EndAndExpand" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

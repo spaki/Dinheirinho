@@ -14,6 +14,7 @@ namespace Dinheirinho.Models
             Ativa = true;
             Data = DateTime.Now;
             Tipo = "Saída";
+            Foto = "nophoto.png";
         }
 
         [PrimaryKey]

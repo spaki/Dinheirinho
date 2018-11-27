@@ -20,7 +20,7 @@ namespace Dinheirinho.Views
 
         protected async override void OnAppearing()
         {
-            //await CarregarTela();
+            await CarregarTela();
         }
 
         private async void BtnNova_Clicked(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace Dinheirinho.Views
         private async Task CarregarTela()
         {
             lvMovimentacoes.ItemsSource = await movimentacaoService.ListarTodasAsync(null);
-            lblSaldo.Text = "Saldo: " + (await movimentacaoService.ObterSaldo())?.ToString("C");
+            lblSaldo.Text = (await movimentacaoService.ObterSaldo()).ToString("C") ;
         }
     }
 }
