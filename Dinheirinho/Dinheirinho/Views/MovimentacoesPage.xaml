@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:Dinheirinho.Converters"
+             x:Class="Dinheirinho.Views.MovimentacoesPage"
+             Title="Movimentações">
+    <ContentPage.Resources>
+        <converter:MovimentacaoColorConverter x:Key="MovimentacaoColorConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label x:Name="lblSaldo" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="btnNova" Text="Nova" Clicked="BtnNova_Clicked" />
+
+            <ListView x:Name="lvMovimentacoes">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Descricao}"/>
+                                    <Label Text="{Binding Valor}" TextColor="{Binding Tipo, Converter={StaticResource MovimentacaoColorConverter}}"/>
+                                </StackLayout>
+                                
+                                <Label Text="{Binding Data}" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Atualizar" Clicked="MenuItemAtualizar_OnClicked" CommandParameter="{Binding .}" IsDestructive="False" />
+                                <MenuItem Text="Apagar" Clicked="MenuItemApagar_OnClicked" CommandParameter="{Binding .}" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
