@@ -32,20 +32,6 @@ namespace Dinheirinho.Services
                 && (descricao == null || e.Descricao.Contains(descricao))
             ).ToListAsync();
 
-        public async Task<List<Movimentacao>> ListarEntradas(string descricao) =>
-            await App.DinheirinhoDatabase.Connection.Table<Movimentacao>().Where(e =>
-                e.Ativa
-                && e.Tipo == "Entrada"
-                && (descricao == null || e.Descricao.Contains(descricao))
-            ).ToListAsync();
-
-        public async Task<List<Movimentacao>> ListarSaidas(string descricao) =>
-            await App.DinheirinhoDatabase.Connection.Table<Movimentacao>().Where(e =>
-                e.Ativa
-                && e.Tipo == "Saída"
-                && (descricao == null || e.Descricao.Contains(descricao))
-            ).ToListAsync();
-
         public async Task<decimal> ObterSaldo() => await App.DinheirinhoDatabase.Connection.ExecuteScalarAsync<decimal>(
             @"
                 select 
@@ -61,6 +47,34 @@ namespace Dinheirinho.Services
                     )
                 from [Movimentacao]
                 where [Ativa] = 1
+            "
+        );
+
+        public async Task<float> ObterSomaDasEntradas() => await App.DinheirinhoDatabase.Connection.ExecuteScalarAsync<float>(
+            @"
+                select 
+                    ifnull(
+                        sum ([Valor]),
+                        0
+                    )
+                from [Movimentacao]
+                where 
+                    [Ativa] = 1
+                    and [Tipo] = 'Entrada'
+            "
+        );
+
+        public async Task<float> ObterSomaDasSaidas() => await App.DinheirinhoDatabase.Connection.ExecuteScalarAsync<float>(
+            @"
+                select 
+                    ifnull(
+                        sum ([Valor]),
+                        0
+                    )
+                from [Movimentacao]
+                where 
+                    [Ativa] = 1
+                    and [Tipo] = 'Saída'
             "
         );
     }

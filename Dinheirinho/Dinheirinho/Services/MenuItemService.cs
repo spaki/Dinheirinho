@@ -9,6 +9,7 @@ namespace Dinheirinho.Services
         public static ObservableCollection<MenuItemInfo> ListMenuItems() =>
             new ObservableCollection<MenuItemInfo> {
                 new MenuItemInfo() { Title = "Movimentações", Icon = "movimentacao.png", TargetType = typeof(MovimentacoesPage) },
+                new MenuItemInfo() { Title = "Gráficos", Icon = "movimentacao.png", TargetType = typeof(GraficosPage) },
                 new MenuItemInfo() { Title = "About", Icon = "about.png", TargetType = typeof(AboutPage) }
             };
     }
