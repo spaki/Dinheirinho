@@ -1,4 +1,6 @@
 ﻿using Dinheirinho.Repositories;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Push;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -32,6 +34,12 @@ namespace Dinheirinho
 
                 return dinheirinhoDatabase;
             }
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            AppCenter.Start("[CHAVE AQUI!!!]", typeof(Push));
         }
     }
 }
